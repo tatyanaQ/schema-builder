@@ -1,0 +1,14 @@
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
+
+export type <%= collection.nameCapital %>Document = HydratedDocument<<%= collection.nameCapital %>>;
+
+@Schema()
+export class <%= collection.nameCapital %> {
+  <% properties.forEach(function(property){ %>
+    @Prop(<%- property.mongoProp %>)
+    <%- property.name %>: <%- property.tsType %>;
+  <% }); %>
+}
+
+export const <%= collection.name %>Schema = SchemaFactory.createForClass(<%= collection.nameCapital %>);

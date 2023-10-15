@@ -1,7 +1,9 @@
-import { Router, Request, Response } from "express";
+import express, { Router, Request, Response } from "express";
 import { createCollection } from "./controllers/create-collection";
 
 export const router = Router();
+
+router.use(express.json());
 
 router.get("/", (req: Request, res: Response) => {
   return res.send("Builder!");
