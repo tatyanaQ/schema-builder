@@ -5,7 +5,6 @@ import { setRequestId } from "./middlewares/request-id";
 import { logRequest } from "./middlewares/log-request";
 import { authorize } from "./middlewares/auth";
 import { AllExceptionsFilter } from "./middlewares/exception-filter";
-import { router } from "./builder";
 
 const PORT = 8080;
 
@@ -16,12 +15,11 @@ async function bootstrap() {
   app.use(setRequestId);
   app.use(logRequest);
   app.use(authorize);
-  app.use('/builder', router);
 
   app.useGlobalFilters(new AllExceptionsFilter());
 
   await app.listen(PORT);
-  Logger.log(`Server listening at ${PORT}`, 'index');
+  Logger.log(`Server listening at ${PORT}`, "index");
 }
 
 bootstrap();
